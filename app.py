@@ -1,4 +1,6 @@
-import os
+
+import json
+import os, sys
 import socket
 from monitor import Monitor
 from influxdb_client import InfluxDBClient, Point
@@ -9,7 +11,7 @@ from datetime import datetime
 
 def main():
 
-     config = {}
+    config = {}
     try:
         with open("./settings.json") as f:
             config = json.loads(f.read())

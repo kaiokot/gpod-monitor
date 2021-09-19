@@ -23,7 +23,7 @@ then
     esac
 fi
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 crontab -l > machine-monitor
 echo "* * * * * python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor
