@@ -1,4 +1,4 @@
-# /bin/sh
+#!/bin/sh
 
 command -v pip > /dev/null
 
@@ -9,7 +9,7 @@ then
     case $input in
         [yY][eE][sS]|[yY])
     echo "installing pip..."
-    apt -yq install python3-pip &
+    sudo apt-get -yq install python3-pip &
     echo "pip installed! "
     ;;
         [nN][oO]|[nN])
@@ -23,8 +23,11 @@ then
     esac
 fi
 
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt &
+
+sudo chmod a+x app.py &
 
 crontab -l > machine-monitor
 echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor
 crontab machine-monitor
+exit 0
