@@ -47,25 +47,18 @@ def main():
         client.close()
 
 
-
-
-
-
-    
-
 def create_points(m):
     
-    iso_time = datetime.utcnow()
+    utc_time = datetime.utcnow()
 
     points = []   
+    points.append(Point("cpu_temperature").tag("device", socket.gethostname()).field("value", m.cpu_temperature()).time(time=utc_time))
+    
+    points.append(Point("cpu_used").tag("device", socket.gethostname()).field("value", m.cpu_used()).time(time=utc_time))
 
-    points.append(Point("cpu_temperature").tag("device", socket.gethostname()).field("value", m.cpu_temperature()).time(time=iso_time))
+    points.append(Point("memory_total").tag("device", socket.gethostname()).field("value", m.memory_total()).time(time=utc_time))
 
-    points.append(Point("cpu_used").tag("device", socket.gethostname()).field("value", m.cpu_used()).time(time=iso_time))
-
-    points.append(Point("memory_total").tag("device", socket.gethostname()).field("value", m.memory_total()).time(time=iso_time))
-
-    points.append(Point("memory_used").tag("device", socket.gethostname()).field("value", m.memory_used()).time(time=iso_time))
+    points.append(Point("memory_used").tag("device", socket.gethostname()).field("value", m.memory_used()).time(time=utc_time))
 
 
     return points

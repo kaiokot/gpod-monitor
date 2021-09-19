@@ -14,40 +14,70 @@ class Monitor:
         return cpu_percent
     
     def cpu_temperature(self):
-        # print('cpu_temperature:', psutil.sensors_temperatures())    
-        cpu_temp = psutil.sensors_temperatures()["coretemp"][0].current
-        print('cpu_temperature:', cpu_temp)
-        return cpu_temp      
+        try:
+            cpu_temp = psutil.sensors_temperatures()["coretemp"][0].current
+            print('cpu_temperature:', cpu_temp)
+            return cpu_temp   
+        except Exception as e:
+            print(str(e))
+            return 0  
+          
 
     def memory_available(self):
-        mem_avl = psutil.virtual_memory().available
-        print('memory_available:',mem_avl)
-        return mem_avl
+        try:
+            mem_avl = psutil.virtual_memory().available
+            print('memory_available:',mem_avl)
+            return mem_avl
+        except Exception as e:
+            print(str(e))
+            return 0 
 
     def memory_percent(self):
-        mem_pct =  psutil.virtual_memory().percent
-        print('memory_percent:',mem_pct)
+        try:
+            mem_pct =  psutil.virtual_memory().percent
+            print('memory_percent:',mem_pct)
+            return mem_pct
+        except Exception as e:
+            print(str(e))
+            return 0 
    
     def memory_used(self):
-        mem_usd = psutil.virtual_memory().used
-        print('memory_used:', mem_usd)
-        return mem_usd
+        try:
+            mem_usd = psutil.virtual_memory().used
+            print('memory_used:', mem_usd)
+            return mem_usd
+        except Exception as e:
+            print(str(e))
+            return 0 
 
 
     def memory_free(self):
-        mem_fre =  psutil.virtual_memory().free
-        print('memory_free',mem_fre)   
-        return mem_fre     
+        try:
+            mem_fre =  psutil.virtual_memory().free
+            print('memory_free',mem_fre)   
+            return mem_fre
+        except Exception as e:
+            print(str(e))
+            return 0      
 
 
     def memory_total(self):
-        mem_ttl = psutil.virtual_memory().total
-        print('memory_total:', mem_ttl)
-        return mem_ttl
+        try:
+            mem_ttl = psutil.virtual_memory().total
+            print('memory_total:', mem_ttl)
+            return mem_ttl
+        except Exception as e:
+            print(str(e))
+            return 0 
 
     def fan_speed(self):
-        fan = psutil.sensors_fans()
-        print('fan_speed:', fan)
+        try:
+            fan = psutil.sensors_fans()
+            print('fan_speed:', fan)
+            return fan
+        except Exception as e:
+            print(str(e))
+            return 0 
 
    
 
