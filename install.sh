@@ -9,7 +9,7 @@ then
     case $input in
         [yY][eE][sS]|[yY])
     echo "installing pip..."
-    apt install -qy python3-pip &
+    apt -yq install python3-pip &
     echo "pip installed! "
     ;;
         [nN][oO]|[nN])
