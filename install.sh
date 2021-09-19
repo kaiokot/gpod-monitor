@@ -26,5 +26,5 @@ fi
 pip3 install -r requirements.txt
 
 crontab -l > machine-monitor
-echo "* * * * * python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor
+echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor
 crontab machine-monitor
