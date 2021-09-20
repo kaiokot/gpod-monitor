@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
 import json
-import os, sys
+import sys
 import socket
 from monitor import Monitor
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
-import time
 from datetime import datetime
 
 
@@ -51,14 +50,17 @@ def create_points(m):
     
     utc_time = datetime.utcnow()
 
+    device_name = socket.gethostname();
+
     points = []   
-    points.append(Point("cpu_temperature").tag("device", socket.gethostname()).field("value", m.cpu_temperature()).time(time=utc_time))
+
+    points.append(Point("cpu_temperature").tag("device", device_name).field("value", m.cpu_temperature()).time(time=utc_time))
     
-    points.append(Point("cpu_used").tag("device", socket.gethostname()).field("value", m.cpu_used()).time(time=utc_time))
+    points.append(Point("cpu_used").tag("device", device_name).field("value", m.cpu_used()).time(time=utc_time))
 
-    points.append(Point("memory_total").tag("device", socket.gethostname()).field("value", m.memory_total()).time(time=utc_time))
+    points.append(Point("memory_total").tag("device", device_name).field("value", m.memory_total()).time(time=utc_time))
 
-    points.append(Point("memory_used").tag("device", socket.gethostname()).field("value", m.memory_used()).time(time=utc_time))
+    points.append(Point("memory_used").tag("device", device_name).field("value", m.memory_used()).time(time=utc_time))
 
 
     return points

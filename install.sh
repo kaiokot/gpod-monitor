@@ -3,7 +3,7 @@
 checkPython3(){
    
 
-    if ! command -v python3 &> /dev/null 
+    if ! command -v python3 > /dev/null 2>&1
     then    
         echo "python3 not installed!"
         echo "installing python3..."   
@@ -18,7 +18,7 @@ checkPython3(){
 }
 
 checkPip3(){
-    if  ! command -v pip3 &> /dev/null 
+    if  ! command -v pip3 > /dev/null 2>&1
     then   
         echo "pip3 not installed!"
         echo "installing pip3..."
