@@ -1,4 +1,5 @@
 import psutil
+import os
 
 class Monitor:   
     def __init__(self):
@@ -11,7 +12,9 @@ class Monitor:
     
     def cpu_temperature(self):
         try:
-            cpu_temp = psutil.sensors_temperatures()["coretemp"][0].current
+            arch = "cpu_thermal" if os.uname()[4][:3] == 'arm' else "coretemp"
+
+            cpu_temp = psutil.sensors_temperatures()[arch][0].current
             print('cpu_temperature:', cpu_temp)
             return cpu_temp   
         except Exception as e:
