@@ -10,10 +10,10 @@ then
     case $input in
         [yY][eE][sS]|[yY])
     echo "installing python3..."
-    sudo apt install software-properties-common && 
-    sudo add-apt-repository ppa:deadsnakes/ppa &&
-    sudo apt update
-    sudo apt-get -yq python3.8 &&
+     apt install software-properties-common && 
+     add-apt-repository ppa:deadsnakes/ppa &&
+     apt update
+     apt-get -yq python3.8 &&
     echo "python3 installed! "
     ;;
         [nN][oO]|[nN])
@@ -37,7 +37,7 @@ then
     case $input in
         [yY][eE][sS]|[yY])
     echo "installing pip..."
-    sudo apt-get -yq install python3-pip &&
+     apt-get -yq install python3-pip &&
     echo "pip installed! "
     ;;
         [nN][oO]|[nN])
@@ -51,9 +51,9 @@ then
     esac
 fi
 
-sudo pip3 install -r requirements.txt &&
+ pip3 install -r requirements.txt &&
 
-sudo chmod a+x app.py &&
+ chmod a+x app.py &&
 
 crontab -l > machine-monitor &&
 echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&&1" >> machine-monitor &&
