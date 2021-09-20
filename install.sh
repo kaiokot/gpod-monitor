@@ -67,8 +67,8 @@ configureCron(){
 }
 
 
-checkPython3 &
-checkPip3 &
-installPackage &
+checkPython3 &&
+checkPip3 &&
+installPackage &&
 configureCron
 
