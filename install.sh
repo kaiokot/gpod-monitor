@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-command -v python3 > /dev/null &
+command -v python3 > /dev/null &&
 
 if [ $? -eq 1 ]
 then
@@ -10,10 +10,10 @@ then
     case $input in
         [yY][eE][sS]|[yY])
     echo "installing python3..."
-    sudo apt install software-properties-common & 
-    sudo add-apt-repository ppa:deadsnakes/ppa &
+    sudo apt install software-properties-common && 
+    sudo add-apt-repository ppa:deadsnakes/ppa &&
     sudo apt update
-    sudo apt-get -yq python3.8 &
+    sudo apt-get -yq python3.8 &&
     echo "python3 installed! "
     ;;
         [nN][oO]|[nN])
@@ -28,7 +28,7 @@ then
 fi
 
 
-command -v pip3 > /dev/null &
+command -v pip3 > /dev/null &&
 
 if [ $? -eq 1 ]
 then
@@ -37,7 +37,7 @@ then
     case $input in
         [yY][eE][sS]|[yY])
     echo "installing pip..."
-    sudo apt-get -yq install python3-pip &
+    sudo apt-get -yq install python3-pip &&
     echo "pip installed! "
     ;;
         [nN][oO]|[nN])
@@ -51,11 +51,11 @@ then
     esac
 fi
 
-sudo pip3 install -r requirements.txt &
+sudo pip3 install -r requirements.txt &&
 
-sudo chmod a+x app.py &
+sudo chmod a+x app.py &&
 
-crontab -l > machine-monitor &
-echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor &
-crontab machine-monitor &
+crontab -l > machine-monitor &&
+echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&&1" >> machine-monitor &&
+crontab machine-monitor &&
 exit 0 
