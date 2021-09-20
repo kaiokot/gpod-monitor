@@ -4,53 +4,30 @@ checkPython3(){
     command -v python3 > /dev/null 
 
     if [ $? -eq 1 ]
-    then
-        read -r -p "oops, python3 not installed! Do you want install? [Y/n] " input
-    
-        case $input in
-            [yY][eE][sS]|[yY])
-        echo "installing python3..."
+    then    
+        echo "python3 not installed!"
+        echo "installing python3..."   
         apt install software-properties-common  
         add-apt-repository ppa:deadsnakes/ppa 
         apt update
-        apt-get -yq python3.8 
-        echo "python3 installed! "
-        ;;
-            [nN][oO]|[nN])
-        echo "ok, no problem"
-        exit 1
-            ;;
-            *)   
-        echo "invalid option" 
-        exit 1
-        ;;
-        esac
+        apt-get -yq python3.8  
+        echo "python3 installed! "      
+    else
+        echo "python3 ok!"
     fi
-
 }
 
 checkPip3(){
     command -v pip3 > /dev/null 
 
     if [ $? -eq 1 ]
-    then
-        read -r -p "oops, pip not installed! Do you want install? [Y/n] " input
-    
-        case $input in
-            [yY][eE][sS]|[yY])
-        echo "installing pip..."
+    then   
+        echo "pip3 not installed!"
+        echo "installing pip3..."
         apt-get -yq install python3-pip 
-        echo "pip installed! "
-        ;;
-            [nN][oO]|[nN])
-        echo "ok, no problem"
-        exit 1
-            ;;
-            *)   
-        echo "invalid option" 
-        exit 1
-        ;;
-        esac
+        echo "pip installed! "       
+    else
+        echo "pip3 ok!"
     fi
 }
 
