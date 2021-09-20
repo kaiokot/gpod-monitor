@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-command -v python3 > /dev/null
+command -v python3 > /dev/null &
 
 if [ $? -eq 1 ]
 then
@@ -13,7 +13,7 @@ then
     sudo apt install software-properties-common & 
     sudo add-apt-repository ppa:deadsnakes/ppa &
     sudo apt update
-    sudo apt install python3.8 &
+    sudo apt-get -yq python3.8 &
     echo "python3 installed! "
     ;;
         [nN][oO]|[nN])
@@ -28,7 +28,7 @@ then
 fi
 
 
-command -v pip3 > /dev/null
+command -v pip3 > /dev/null &
 
 if [ $? -eq 1 ]
 then
@@ -55,7 +55,7 @@ sudo pip3 install -r requirements.txt &
 
 sudo chmod a+x app.py &
 
-crontab -l > machine-monitor
-echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor
-crontab machine-monitor
-exit 0
+crontab -l > machine-monitor &
+echo "* * * * * /usr/bin/python3 $PWD/app.py > /tmp/machine-monitor.log 2>&1" >> machine-monitor &
+crontab machine-monitor &
+exit 0 
