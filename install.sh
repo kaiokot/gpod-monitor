@@ -1,9 +1,9 @@
 #!/bin/sh
 
 checkPython3(){
-    command -v python3 > /dev/null 
+   
 
-    if [ $? -eq 1 ]
+    if ! command -v python3 &> /dev/null 
     then    
         echo "python3 not installed!"
         echo "installing python3..."   
@@ -18,9 +18,7 @@ checkPython3(){
 }
 
 checkPip3(){
-    command -v pip3 > /dev/null 
-
-    if [ $? -eq 1 ]
+    if  ! command -v pip3 &> /dev/null 
     then   
         echo "pip3 not installed!"
         echo "installing pip3..."
