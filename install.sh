@@ -22,10 +22,24 @@ checkPip3(){
     then   
         echo "pip3 not installed!"
         echo "installing pip3..."
+        apt update
         apt-get -yq install python3-pip 
         echo "pip installed! "       
     else
         echo "pip3 ok!"
+    fi
+}
+
+checkCron(){
+    if  ! command -v crontab > /dev/null 2>&1
+    then   
+        echo "crontab not installed!"
+        echo "installing crontab..."
+        apt update
+        apt-get -yq install cron
+        echo "crontab installed! "       
+    else
+        echo "crontab ok!"
     fi
 }
 
@@ -42,5 +56,5 @@ configureCron(){
 }
 
 
-checkPython3 && checkPip3 && installPackage && configureCron
+checkPython3 && checkPip3 && checkCron && installPackage && configureCron
 
